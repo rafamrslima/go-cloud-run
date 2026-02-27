@@ -1,0 +1,29 @@
+name: Build and Deploy to Cloud Run
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: 'read'
+  id-token: 'write' # Required for OIDC
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Google Auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          # You get this string from: gcloud iam workload-identity-pools providers describe github-provider ...
+          workload_identity_provider: 'projects/project-fedc503e-9fe4-466f-a9d/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'github-actions-sa@project-fedc503e-9fe4-466f-a9d.iam.gserviceaccount.com'
+
+      - name: 'Deploy to Cloud Run'
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          service: 'my-go-service'
+          region: 'europe-central2'
+          source: '.' # This uses Cloud Build automatically
