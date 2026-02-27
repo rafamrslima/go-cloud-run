@@ -18,7 +18,7 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           # You get this string from: gcloud iam workload-identity-pools providers describe github-provider ...
-          workload_identity_provider: 'projects/project-fedc503e-9fe4-466f-a9d/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          workload_identity_provider: 'projects/391860429777/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
           service_account: 'github-actions-sa@project-fedc503e-9fe4-466f-a9d.iam.gserviceaccount.com'
 
       - name: 'Deploy to Cloud Run'
