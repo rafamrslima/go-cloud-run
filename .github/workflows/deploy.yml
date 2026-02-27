@@ -27,3 +27,4 @@ jobs:
           service: 'my-go-service'
           region: 'europe-central2'
           source: '.' # This uses Cloud Build automatically
+          revision_traffic: 'LATEST=100'
