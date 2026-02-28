@@ -15,7 +15,6 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("Received request!")
-		log.Println("Testing github actions!")
 		fmt.Fprintf(w, "Hello, GCP! You've hit the Go service -> Testing Cloud Run")
 	})
 
